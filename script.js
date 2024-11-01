@@ -23,6 +23,7 @@ let coneSpawnInterval = 1000; // Cone spawn every second
 // Game control variables
 let score = 0;
 let gameOver = false;
+let gameWon = false;
 
 // Key controls
 const keys = {
@@ -87,7 +88,17 @@ function updateGame() {
     if (gameOver) {
         ctx.fillStyle = 'red';
         ctx.font = '30px Arial';
-        ctx.fillText('Game Over', canvas.width / 2 - 70, canvas.height / 2);
+        ctx.fillText('Game Over, Womp Womp.', canvas.width / 2 - 70, canvas.height / 2);
+        ctx.font = '20px Arial';
+        ctx.fillText(`Score: ${score}`, canvas.width / 2 - 35, canvas.height / 2 + 30);
+        return;
+    }
+
+    if (score >= 100) {
+        gameWon = true;
+        ctx.fillStyle = 'green';
+        ctx.font = '30px Arial';
+        ctx.fillText('You Win! Thanks for Playing', canvas.width / 2 - 60, canvas.height / 2);
         ctx.font = '20px Arial';
         ctx.fillText(`Score: ${score}`, canvas.width / 2 - 35, canvas.height / 2 + 30);
         return;
